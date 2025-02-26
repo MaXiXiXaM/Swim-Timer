@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>High Precision Timer</title>
+    <title>Timer + Live Clock</title>
     <style>
         body { text-align: center; font-family: Arial, sans-serif; }
-        #time { font-size: 40px; margin: 20px; }
+        #time, #current-time { font-size: 40px; margin: 10px; }
         button { margin: 5px; padding: 10px 20px; font-size: 16px; }
     </style>
 </head>
 <body>
-    <h1>High Precision Timer (Milliseconds)</h1>
+    <h1>High Precision Timer</h1>
     <div id="time">0.000 sec</div>
     <button onclick="startTimer()">Start</button>
     <button onclick="stopTimer()">Stop</button>
     <button onclick="resetTimer()">Reset</button>
+
+    <h2>Current Time: <span id="current-time"></span></h2>
 
     <script>
         let startTime = 0, elapsedTime = 0, timer;
@@ -49,6 +51,17 @@
             elapsedTime = 0;
             document.getElementById("time").innerText = "0.000 sec";
         }
+
+        function updateCurrentTime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById("current-time").innerText = `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateCurrentTime, 1000);
+        updateCurrentTime();
     </script>
 </body>
 </html>
