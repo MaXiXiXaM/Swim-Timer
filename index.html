@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Timer</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        #time { font-size: 40px; margin: 20px; }
+        button { margin: 5px; padding: 10px 20px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Simple Timer</h1>
+    <div id="time">0 seconds</div>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+    <button onclick="resetTimer()">Reset</button>
+
+    <script>
+        let time = 0, timer;
+        function startTimer() {
+            if (!timer) timer = setInterval(() => {
+                document.getElementById("time").innerText = `${++time} seconds`;
+            }, 1000);
+        }
+        function stopTimer() { clearInterval(timer); timer = null; }
+        function resetTimer() { stopTimer(); time = 0; document.getElementById("time").innerText = "0 seconds"; }
+    </script>
+</body>
+</html>
