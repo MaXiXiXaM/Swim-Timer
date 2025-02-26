@@ -4,20 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timer + Live Clock</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { text-align: center; font-family: Arial, sans-serif; }
-        #time, #current-time { font-size: 40px; margin: 10px; }
-        button { margin: 5px; padding: 10px 20px; font-size: 16px; }
+        body {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        #time, #current-time {
+            font-size: 50px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 30px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            margin: 10px;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        button:nth-child(1) { background: #28a745; color: white; } /* Start */
+        button:nth-child(2) { background: #dc3545; color: white; } /* Stop */
+        button:nth-child(3) { background: #ffc107; color: black; } /* Reset */
+
+        button:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
-    <h1>High Precision Timer</h1>
-    <div id="time">0.000 sec</div>
-    <button onclick="startTimer()">Start</button>
-    <button onclick="stopTimer()">Stop</button>
-    <button onclick="resetTimer()">Reset</button>
+    <div class="container">
+        <h1>High Precision Timer</h1>
+        <div id="time">0.000 sec</div>
+        <button onclick="startTimer()">Start</button>
+        <button onclick="stopTimer()">Stop</button>
+        <button onclick="resetTimer()">Reset</button>
+    </div>
 
-    <h2>Current Time: <span id="current-time"></span></h2>
+    <div class="container" style="margin-top: 20px;">
+        <h2>Current Time</h2>
+        <div id="current-time"></div>
+    </div>
 
     <script>
         let startTime = 0, elapsedTime = 0, timer;
