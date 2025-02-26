@@ -25,6 +25,7 @@
             margin-bottom: 10px;
         }
 
+        /* FIX: Prevent timer width from changing */
         #time, #current-time {
             font-size: 50px;
             font-weight: bold;
@@ -33,6 +34,9 @@
             border-radius: 10px;
             display: inline-block;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 200px; /* FIXED WIDTH */
+            text-align: center;
+            font-family: 'Courier New', monospace; /* Monospace font for stability */
         }
 
         button {
@@ -85,7 +89,11 @@
             if (running) {
                 const now = performance.now();
                 elapsedTime = now - startTime;
-                document.getElementById("time").innerText = (elapsedTime / 1000).toFixed(3) + " sec";
+
+                // FIX: Ensure consistent text length
+                let formattedTime = (elapsedTime / 1000).toFixed(3).padStart(7, '0') + " sec";
+                
+                document.getElementById("time").innerText = formattedTime;
                 timer = requestAnimationFrame(updateTimer);
             }
         }
